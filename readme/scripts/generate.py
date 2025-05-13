@@ -86,11 +86,17 @@ most_watched = max(repos, key=lambda r: r.watchers_count) if repos else None
 # Calculate average repo size in MB
 avg_repo_size = total_size / total_repos / 1024 if total_repos > 0 else 0
 
-# Calculate Top Languages by Lines of Code
-avg_bytes_per_line = 50
-language_loc = {lang: bytes_count // avg_bytes_per_line for lang, bytes_count in language_bytes.items()}
-sorted_loc = sorted(language_loc.items(), key=lambda item: item[1], reverse=True)
-top_languages_loc = sorted_loc[:6]  
+# Format byte sizes in KB
+def format_size(bytes):
+    kb = bytes / 1024
+    if kb >= 1024:
+        return f"{kb/1024:.1f} MB"
+    else:
+        return f"{kb:.1f} KB"
+
+# Get top languages by bytes
+sorted_bytes = sorted(language_bytes.items(), key=lambda item: item[1], reverse=True)
+top_languages_bytes = sorted_bytes[:6]  
 
 # Update README
 with open('README.md', 'w') as f:
@@ -107,10 +113,12 @@ with open('README.md', 'w') as f:
     f.write(f"<td valign='top'>\n")
     f.write(f"<h2>📝 Top Languages</h2>\n")
     f.write(f"<table>\n")
-    for i in range(0, len(top_languages_loc), 2):
-        lang1, loc1 = top_languages_loc[i]
-        lang2, loc2 = top_languages_loc[i + 1] if i + 1 < len(top_languages_loc) else ("", "")
-        f.write(f"<tr><td><b>{lang1}</b></td><td>{loc1} LOC</td><td><b>{lang2}</b></td><td>{loc2} LOC</td></tr>\n")
+    for i in range(0, len(top_languages_bytes), 2):
+        lang1, bytes1 = top_languages_bytes[i]
+        lang2, bytes2 = top_languages_bytes[i + 1] if i + 1 < len(top_languages_bytes) else ("", "")
+        size1 = format_size(bytes1)
+        size2 = format_size(bytes2) if bytes2 else ""
+        f.write(f"<tr><td><b>{lang1}</b></td><td>{size1}</td><td><b>{lang2}</b></td><td>{size2}</td></tr>\n")
     f.write(f"</table>\n</td>\n")
     f.write(f"</tr></table>\n\n")
     # Footer
@@ -123,8 +131,8 @@ with open('README.md', 'w') as f:
 # Send Discord message 
 short_date_str = perth_now.strftime("%d %b %y")
 
-# Prepare Top Languages by LOC for Discord Embed
-top_languages_loc_str = "\n".join([f"**{lang}**: {loc} LOC" for lang, loc in top_languages_loc])
+# Prepare Top Languages for Discord Embed
+top_languages_str = "\n".join([f"**{lang}**: {format_size(bytes)}" for lang, bytes in top_languages_bytes])
 
 embeds = [
     {
@@ -143,7 +151,7 @@ embeds = [
             {"name": "**Commits (30d)**", "value": f"{commit_counts['30d']}", "inline": True},
             {"name": "**Commits (365d)**", "value": f"{commit_counts['365d']}", "inline": True},
             {"name": "\u200B", "value": "\u200B"}, 
-            {"name": "**Top Languages by Lines of Code**", "value": top_languages_loc_str, "inline": False},
+            {"name": "**Top Languages by Size**", "value": top_languages_str, "inline": False},
         ],
     }
 ]
