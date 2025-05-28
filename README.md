@@ -12,11 +12,11 @@
 <table>
 <tr><td><b>TypeScript</b></td><td>7.9 MB</td><td><b>JavaScript</b></td><td>4.2 MB</td></tr>
 <tr><td><b>Python</b></td><td>1.1 MB</td><td><b>CSS</b></td><td>851.8 KB</td></tr>
-<tr><td><b>Solidity</b></td><td>749.4 KB</td><td><b>Handlebars</b></td><td>191.7 KB</td></tr>
+<tr><td><b>Solidity</b></td><td>749.4 KB</td><td><b>Swift</b></td><td>193.0 KB</td></tr>
 </table>
 </td>
 </tr></table>
 
 <h2>📅 Last Updated</h2>
 
-Updated on <b>28 May 2025</b> at <b>12:05 AM</b> (+8)
+Updated on <b>29 May 2025</b> at <b>12:05 AM</b> (+8)
