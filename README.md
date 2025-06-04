@@ -11,12 +11,12 @@
 <h2>📝 Top Languages</h2>
 <table>
 <tr><td><b>TypeScript</b></td><td>8.1 MB</td><td><b>JavaScript</b></td><td>4.2 MB</td></tr>
-<tr><td><b>Python</b></td><td>1.1 MB</td><td><b>CSS</b></td><td>851.8 KB</td></tr>
-<tr><td><b>Solidity</b></td><td>749.4 KB</td><td><b>Swift</b></td><td>193.0 KB</td></tr>
+<tr><td><b>Python</b></td><td>1.1 MB</td><td><b>CSS</b></td><td>852.8 KB</td></tr>
+<tr><td><b>Solidity</b></td><td>749.4 KB</td><td><b>Swift</b></td><td>201.7 KB</td></tr>
 </table>
 </td>
 </tr></table>
 
 <h2>📅 Last Updated</h2>
 
-Updated on <b>04 June 2025</b> at <b>12:05 AM</b> (+8)
+Updated on <b>05 June 2025</b> at <b>12:06 AM</b> (+8)
